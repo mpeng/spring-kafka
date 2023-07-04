@@ -1,0 +1,54 @@
+RabbitMQ
+Kafka:
+
+IMPORTANT !!: Producers/Consumers that are running under Windows do not recognize Kafka that is running under Ubuntu.
+See https://stackoverflow.com/questions/64177422/unable-to-produce-to-kafka-topic-that-is-running-on-wsl-2-from-windows
+
+C:\Work\Kafka
+/mnt/c/Work/Kafka/kafka_2.13-3.5.0
+
+https://sherwoodforest.atlassian.net/wiki/spaces/DEV/pages/2557346128/Kafka+Guide
+https://sherwoodforest.atlassian.net/wiki/spaces/DEV/pages/2326332371/Kafka+Setup
+https://sherwoodforest.atlassian.net/wiki/spaces/ARC/pages/2601812038/Apache+Kafka+-+Google+Pubsub+Evaluation
+
+Refer to !!! https://kafka.apache.org/quickstart
+
+To Run Under Ubuntu
+===================
+Step 0.  cd /mnt/c/Work/Kafka/kafka_2.13-3.5.0
+Step 1.  tar -xzf kafka_2.13-3.5.0.tgz
+Step 2.  cd kafka_2.13-3.5.0
+Step 3.  bin/zookeeper-server-start.sh config/zookeeper.properties    # Start the ZooKeeper service
+Step 4.  bin/kafka-server-start.sh config/server.properties      # Start the Kafka broker service
+Step 5.  bin/kafka-topics.sh --create --topic quickstart-events --bootstrap-server localhost:9092 # Created topic quickstart-events
+Step 6.  bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server localhost:9092 # Write to the topic 
+Step 7.  bin/kafka-console-consumer.sh --topic quickstart-events --from-beginning --bootstrap-server localhost:9092  # Read from the topic
+Step 8.  Edit the config/connect-standalone.properties file, add or change the plugin.path configuration property match the following, and save the file: "plugin.path=libs/connect-file-3.5.0.jar"
+Step 9.  bin/connect-standalone.sh config/connect-standalone.properties config/connect-file-source.properties config/connect-file-sink.properties
+more test.sink.txt
+Step 10.  bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic connect-test --from-beginning
+
+To Create New Topic: bin/kafka-topics.sh --create --bootstrap-server localhost:9092  --topic optionslab
+
+To Run Under Windows
+====================
+Step 0.  cd c:\Work\Kafka\kafka_2.13-3.5.0
+Step 1.  bin\windows\zookeeper-server-start.bat config\zookeeper.properties    # Start the ZooKeeper service
+Step 2.  bin\windows\kafka-server-start.bat config\server.properties     # Start the ZooKeeper service
+Step 3.  cd C:\Work\ang5\spring-kafka
+Step 4.  gradlew bootRun
+Step 5.  cd C:\Work\ang5\kafka-spring
+Step 6.  gradlew bootRun
+Step 7.  c:\Work\Kafka\kafka_2.13-3.5.0>bin\windows\kafka-console-consumer.bat --topic optionslab --from-beginning --bootstrap-server localhost:9092 # Read from the topic
+
+To Create New Topic: bin\windows\kafka-topics.bat --create --bootstrap-server localhost:9092  --topic optionslab
+
+ToDo:
+1. Create a Kafka producer with Sprint-Boot microservices with Sprint Initializer at https://start.spring.io/
+2. Create a Kafka consumer with Sprint-Boot microservices
+3. Create a Kafka producer with NodeJS microservices
+4. Create a Kafka consumer with NodeJS microservices
+5. Use Kafka with Docker Compose - https://www.baeldung.com/ops/kafka-docker-setup docker-compose.yml  
+6. Download and Install RabbitMQ: https://www.rabbitmq.com/download.html
+7. Review https://spring.io/
+8. Use Docker Compose.
