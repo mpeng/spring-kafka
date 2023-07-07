@@ -10,3 +10,10 @@
 9. bin/kafka-console-producer.sh --topic optionslab --bootstrap-server localhost:9092 # Write to the topic 
 10.bin/kafka-console-consumer.sh --topic optionslab --from-beginning --bootstrap-server localhost:9092  # Read from the topic
 11. gradlew bootRun
+
+Post below message to http://localhost:8080/api/v1/messages
+
+{
+        "message": "Hello from API 4"
+}
+
