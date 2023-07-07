@@ -3,7 +3,8 @@
 3. gradlew bootRun, see https://spring.io/quickstart
 4. Then access http://localhost:8080/hello?name=Michael
 5. Add Kafka topic to the code
-6. bin/zookeeper-server-start.sh config/zookeeper.properties    # Start the ZooKeeper service
+6. Under /mnt/c/Work/Kafka/kafka_2.13-3.5.0
+	bin/zookeeper-server-start.sh config/zookeeper.properties    # Start the ZooKeeper service
 7. bin/kafka-server-start.sh config/server.properties      # Start the Kafka broker service
 8. bin/kafka-topics.sh --create --topic optionslab --bootstrap-server localhost:9092
 9. bin/kafka-console-producer.sh --topic optionslab --bootstrap-server localhost:9092 # Write to the topic 
